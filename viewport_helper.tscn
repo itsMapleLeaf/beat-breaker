@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://dg3wruc0bmmbc"]
+
+[ext_resource type="Script" path="res://viewport_helper.gd" id="1_lm0ge"]
+
+[node name="ViewportHelper" type="Node2D"]
+script = ExtResource("1_lm0ge")
+color = Color(0.086, 0.29, 0.333, 1)
+metadata/_edit_lock_ = true

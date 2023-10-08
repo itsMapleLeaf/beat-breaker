@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://crb7a16hm24lw"]
+
+[ext_resource type="Script" path="res://playfield_column.gd" id="1_pbq41"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_esg54"]
+bg_color = Color(0.869713, 0.168744, 0.242812, 1)
+
+[node name="PlayfieldColumn" type="Panel"]
+offset_left = -110.0
+offset_top = -591.0
+offset_right = 110.0
+offset_bottom = 591.0
+size_flags_horizontal = 3
+theme_override_styles/panel = SubResource("StyleBoxFlat_esg54")
+script = ExtResource("1_pbq41")
+flash_time = 0.15
+alpha_bright = 0.35
