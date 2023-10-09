@@ -5,9 +5,6 @@ extends Node2D
 	set(value):
 		color = value
 		queue_redraw()
-		
-func _ready() -> void:
-	ProjectSettings.
 
 func _draw() -> void:
 	if Engine.is_editor_hint():
