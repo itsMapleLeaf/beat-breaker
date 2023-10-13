@@ -1,0 +1,11 @@
+[gd_scene load_steps=2 format=3 uid="uid://8rf7ql4t7m1x"]
+
+[ext_resource type="Script" path="res://input_flash.gd" id="1_3cxwa"]
+
+[node name="InputFlash" type="Node2D"]
+modulate = Color(1, 1, 1, 0.2)
+script = ExtResource("1_3cxwa")
+from_opacity = 0.5
+to_opacity = 0.2
+duration = 0.15
+action = "slam"

@@ -1,7 +1,16 @@
-[gd_scene load_steps=2 format=3 uid="uid://dm8s4nqcrhp31"]
+[gd_scene load_steps=3 format=3 uid="uid://ds03yf6xn66xt"]
 
-[ext_resource type="Script" path="res://guide_line.gd" id="1_cy05u"]
+[ext_resource type="PackedScene" uid="uid://8rf7ql4t7m1x" path="res://input_flash.tscn" id="1_axa0u"]
+[ext_resource type="PackedScene" uid="uid://dm8s4nqcrhp31" path="res://vertical_line.tscn" id="2_452pt"]
 
 [node name="GuideLine" type="Node2D"]
-script = ExtResource("1_cy05u")
-opacity = 0.1
+
+[node name="Flash" parent="." instance=ExtResource("1_axa0u")]
+modulate = Color(1, 1, 1, 0.03)
+from_opacity = 0.1
+to_opacity = 0.03
+duration = 0.05
+action = "tap"
+metadata/_edit_lock_ = true
+
+[node name="VerticalLine" parent="Flash" instance=ExtResource("2_452pt")]

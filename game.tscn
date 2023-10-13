@@ -1,24 +1,77 @@
-[gd_scene load_steps=5 format=3 uid="uid://cakyxfve2gtms"]
+[gd_scene load_steps=7 format=3 uid="uid://cakyxfve2gtms"]
 
 [ext_resource type="Script" path="res://game.gd" id="1_p87gw"]
 [ext_resource type="PackedScene" uid="uid://b23yf1wanxwas" path="res://player.tscn" id="2_glxsf"]
 [ext_resource type="PackedScene" uid="uid://dg3wruc0bmmbc" path="res://viewport_helper.tscn" id="3_k4u7d"]
-[ext_resource type="PackedScene" uid="uid://dm8s4nqcrhp31" path="res://guide_line.tscn" id="4_lt2lj"]
+[ext_resource type="PackedScene" uid="uid://xp4dxu7fynq3" path="res://receptor.tscn" id="3_yn873"]
+[ext_resource type="PackedScene" uid="uid://ds03yf6xn66xt" path="res://guide_line.tscn" id="4_nxyfr"]
+[ext_resource type="PackedScene" uid="uid://bvfycloefybsp" path="res://note.tscn" id="5_wldcy"]
 
 [node name="Game" type="Node2D"]
 script = ExtResource("1_p87gw")
 edge_distance = 15
-sensitivity = 0.7
 
 [node name="ViewportHelper" parent="." instance=ExtResource("3_k4u7d")]
 color = Color(0.231373, 0.180392, 0.407843, 1)
+metadata/_edit_lock_ = true
+
+[node name="Receptor" parent="." instance=ExtResource("3_yn873")]
+position = Vector2(0, 235)
+
+[node name="Chart" type="Control" parent="Receptor"]
+unique_name_in_owner = true
+layout_mode = 3
+anchors_preset = 0
+offset_right = 160.0
+
+[node name="Note" parent="Receptor/Chart" instance=ExtResource("5_wldcy")]
+layout_mode = 1
+
+[node name="Note2" parent="Receptor/Chart" instance=ExtResource("5_wldcy")]
+layout_mode = 1
+offset_top = -35.0
+offset_bottom = -35.0
+playfield_position = 0.75
+
+[node name="Note3" parent="Receptor/Chart" instance=ExtResource("5_wldcy")]
+layout_mode = 1
+offset_top = -75.0
+offset_bottom = -75.0
+playfield_position = 0.25
+
+[node name="Note4" parent="Receptor/Chart" instance=ExtResource("5_wldcy")]
+layout_mode = 1
+offset_top = -115.0
+offset_bottom = -115.0
+playfield_position = 0.5
+
+[node name="Note5" parent="Receptor/Chart" instance=ExtResource("5_wldcy")]
+layout_mode = 1
+offset_top = -155.0
+offset_bottom = -155.0
+playfield_width = 0.5
+
+[node name="Note6" parent="Receptor/Chart" instance=ExtResource("5_wldcy")]
+layout_mode = 1
+offset_top = -195.0
+offset_bottom = -195.0
+playfield_width = 0.5
+playfield_position = 0.25
+
+[node name="Note7" parent="Receptor/Chart" instance=ExtResource("5_wldcy")]
+layout_mode = 1
+offset_top = -235.0
+offset_bottom = -235.0
+playfield_width = 0.5
+playfield_position = 0.5
 
 [node name="Player" parent="." instance=ExtResource("2_glxsf")]
 unique_name_in_owner = true
 position = Vector2(80, 250)
+metadata/_edit_lock_ = true
 
-[node name="GuideLine" parent="." instance=ExtResource("4_lt2lj")]
-unique_name_in_owner = true
+[node name="GuideLine" parent="Player" instance=ExtResource("4_nxyfr")]
+metadata/_edit_lock_ = true
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
@@ -26,3 +79,5 @@ unique_name_in_owner = true
 unique_name_in_owner = true
 offset_right = 40.0
 offset_bottom = 23.0
+metadata/_edit_use_anchors_ = true
+metadata/_edit_lock_ = true

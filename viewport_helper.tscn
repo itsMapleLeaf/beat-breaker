@@ -2,7 +2,11 @@
 
 [ext_resource type="Script" path="res://viewport_helper.gd" id="1_lm0ge"]
 
-[node name="ViewportHelper" type="Node2D"]
+[node name="ViewportHelper" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 160.0
+offset_bottom = 266.667
 script = ExtResource("1_lm0ge")
-color = Color(0.086, 0.29, 0.333, 1)
-metadata/_edit_lock_ = true
+
+[connection signal="resized" from="." to="." method="_on_resized"]

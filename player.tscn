@@ -6,6 +6,7 @@
 [node name="Player" type="Node2D"]
 script = ExtResource("1_iu6f5")
 
-[node name="ShipA" type="Sprite2D" parent="."]
+[node name="Sprite" type="Sprite2D" parent="."]
+unique_name_in_owner = true
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("1_i0lb2")

@@ -3,7 +3,7 @@ class_name Game
 
 @onready var player := %Player as Player
 @onready var debug_text: Label = %DebugText
-@onready var guide_line: Node2D = %GuideLine
+@onready var chart: Control = %Chart
 
 @export var player_rotation_strength := 10.0
 @export_range(0, 50, 1) var edge_distance := 0
@@ -11,16 +11,17 @@ class_name Game
 
 var position_input := 0.5
 var first_mouse_input_processed := false
+var time := -2.0
 
 var viewport_width: float:
 	get: return get_viewport_rect().size.x
 
 func _init() -> void:
 	DisplayServer.mouse_set_mode(DisplayServer.MOUSE_MODE_CAPTURED)
-	
+
 func _process(delta: float) -> void:
-	guide_line.global_position = player.global_position
-	guide_line.queue_redraw()
+	time += delta
+	chart.position.y = time * 100
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
