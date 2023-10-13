@@ -1,0 +1,44 @@
+[gd_scene load_steps=3 format=3 uid="uid://cc0chj52f8cbw"]
+
+[ext_resource type="Script" path="res://editor.gd" id="1_yqr4d"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_6onql"]
+bg_color = Color(0.6, 0.6, 0.6, 0)
+border_width_left = 2
+border_width_right = 2
+border_color = Color(1, 1, 1, 0.439216)
+
+[node name="Editor" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+script = ExtResource("1_yqr4d")
+metadata/_edit_lock_ = true
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 35.0
+offset_bottom = 35.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MenuBar" type="MenuBar" parent="VBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="File" type="PopupMenu" parent="VBoxContainer/MenuBar"]
+
+[node name="Control" type="Control" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Panel" type="Panel" parent="VBoxContainer/Control"]
+layout_mode = 2
+offset_top = 4.0
+offset_right = 160.0
+offset_bottom = 4.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_6onql")

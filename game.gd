@@ -35,9 +35,6 @@ func _input(event: InputEvent) -> void:
 		
 		player.global_position.x = _get_playfield_x_position(position_input)
 		player.set_target_rotation((position_input - prev_position_input) * player_rotation_strength)
-	
-	if event.is_action_pressed("ui_cancel"):
-		get_tree().quit()
 
 func _get_playfield_x_position(normal_position: float) -> float:
 	return lerpf(edge_distance, viewport_width - edge_distance, position_input)

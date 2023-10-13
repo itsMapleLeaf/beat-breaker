@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://vertical_line.gd" id="1_cy05u"]
 
 [node name="VerticalLine" type="Line2D"]
-points = PackedVector2Array(0, 0, 0, 922)
+points = PackedVector2Array(0, 0, 0, 2)
 width = 2.0
 script = ExtResource("1_cy05u")
 metadata/_edit_lock_ = true
