@@ -1,31 +1,35 @@
 extends Node2D
 
-var paused := false
+const CURSOR_INPUT_SENSITIVITY := 2.0
 
-@onready var playfield: Node = %Playfield
-@onready var pause_overlay: CanvasLayer = %PauseOverlay
+@onready var playfield: Playfield = %Playfield
+@onready var pause_overlay: PauseOverlay = %PauseOverlay
+
 
 func _ready() -> void:
 	_unpause()
-	
-func _input(event: InputEvent) -> void:
-	if event.is_action_pressed("ui_cancel"):
-		if paused:
-			_unpause()
-		else:
-			#_pause()
-			get_tree().quit()
+	pause_overlay.resume.connect(_unpause)
 
-func _pause():
-	paused = true
-	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
-	playfield.process_mode = Node.PROCESS_MODE_DISABLED
-	pause_overlay.process_mode = Node.PROCESS_MODE_INHERIT
-	pause_overlay.visible = true
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event is InputEventMouseMotion:
+		playfield.cursor_position_input += event.relative.x * (CURSOR_INPUT_SENSITIVITY / 1000.0)
 	
-func _unpause():
-	paused = false
-	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
-	playfield.process_mode = Node.PROCESS_MODE_INHERIT
-	pause_overlay.process_mode = Node.PROCESS_MODE_DISABLED
+	if event.is_action_pressed("ui_cancel"):
+		_pause()
+
+
+func _unhandled_key_input(event: InputEvent) -> void:
+	if event is InputEventKey: if event.is_pressed() and not event.echo:
+		playfield.tap_note()
+
+
+func _pause() -> void:
+	get_tree().paused = true
+	pause_overlay.visible = true
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+
+func _unpause() -> void:
 	pause_overlay.visible = false
+	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED

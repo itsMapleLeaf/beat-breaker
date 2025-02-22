@@ -1,0 +1,43 @@
+[gd_scene load_steps=2 format=3 uid="uid://c07p4bcd812ge"]
+
+[ext_resource type="Script" path="res://pause_overlay.gd" id="1_hiq43"]
+
+[node name="PauseOverlay" type="CanvasLayer"]
+process_mode = 2
+script = ExtResource("1_hiq43")
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0980392, 0.0980392, 0.0980392, 0.286275)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+alignment = 1
+
+[node name="Resume" type="Button" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+text = "Resume"
+
+[node name="ReturnToTitle" type="Button" parent="ColorRect/VBoxContainer"]
+layout_mode = 2
+text = "Return to Title
+"
+
+[node name="Label" type="Label" parent="."]
+offset_left = 120.0
+offset_top = 168.0
+offset_right = 177.0
+offset_bottom = 191.0
+text = "paused"
+
+[connection signal="button_down" from="ColorRect/VBoxContainer/Resume" to="." method="_resume"]
+[connection signal="button_down" from="ColorRect/VBoxContainer/ReturnToTitle" to="." method="_on_return_to_title_button_down"]

@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://g11mjkibsfki"]
+[gd_scene load_steps=4 format=3 uid="uid://g11mjkibsfki"]
 
 [ext_resource type="Script" path="res://gameplay.gd" id="1_e1yfs"]
 [ext_resource type="PackedScene" uid="uid://ck8ay8mi4qp70" path="res://playfield.tscn" id="2_d1mv6"]
+[ext_resource type="PackedScene" uid="uid://c07p4bcd812ge" path="res://pause_overlay.tscn" id="3_qdlsw"]
 
 [node name="Gameplay" type="Node2D"]
 script = ExtResource("1_e1yfs")
@@ -9,22 +10,7 @@ script = ExtResource("1_e1yfs")
 [node name="Playfield" parent="." instance=ExtResource("2_d1mv6")]
 unique_name_in_owner = true
 position = Vector2(320, 1024)
+playing = true
 
-[node name="PauseOverlay" type="CanvasLayer" parent="."]
+[node name="PauseOverlay" parent="." instance=ExtResource("3_qdlsw")]
 unique_name_in_owner = true
-visible = false
-
-[node name="ColorRect" type="ColorRect" parent="PauseOverlay"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-color = Color(0.0980392, 0.0980392, 0.0980392, 0.286275)
-
-[node name="Label" type="Label" parent="PauseOverlay"]
-offset_left = 120.0
-offset_top = 168.0
-offset_right = 177.0
-offset_bottom = 191.0
-text = "paused"
