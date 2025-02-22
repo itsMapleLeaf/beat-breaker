@@ -1,4 +1,4 @@
-class_name Playfield
+class_name Player
 extends Node2D
 
 const VERTICAL_SECOND_DISTANCE := 256.0

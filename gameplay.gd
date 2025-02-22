@@ -2,7 +2,7 @@ extends Node2D
 
 const CURSOR_INPUT_SENSITIVITY := 2.0
 
-@onready var playfield: Playfield = %Playfield
+@onready var player: Player = %Player
 @onready var pause_overlay: PauseOverlay = %PauseOverlay
 
 
@@ -13,7 +13,7 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
-		playfield.cursor_position_input += event.relative.x * (CURSOR_INPUT_SENSITIVITY / 1000.0)
+		player.cursor_position_input += event.relative.x * (CURSOR_INPUT_SENSITIVITY / 1000.0)
 	
 	if event.is_action_pressed("ui_cancel"):
 		_pause()
@@ -21,7 +21,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _unhandled_key_input(event: InputEvent) -> void:
 	if event is InputEventKey: if event.is_pressed() and not event.echo:
-		playfield.tap_note()
+		player.tap_note()
 
 
 func _pause() -> void:
