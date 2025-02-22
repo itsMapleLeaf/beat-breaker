@@ -16,9 +16,8 @@ var right_bound: float:
 func _ready() -> void:
 	pass # Replace with function body.
 
-func _input(event: InputEvent) -> void:
-	if event is InputEventKey and event.is_pressed() and not event.echo:
-		mesh.modulate.a = 1
-
 func _process(delta: float) -> void:
 	mesh.modulate.a = maxf(mesh.modulate.a - delta / 0.25, 0.25)
+
+func flash() -> void:
+	mesh.modulate.a = 1
