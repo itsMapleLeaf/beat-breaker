@@ -1,0 +1,47 @@
+[gd_scene load_steps=5 format=3 uid="uid://ck8ay8mi4qp70"]
+
+[ext_resource type="Script" path="res://playfield.gd" id="1_6ycwn"]
+[ext_resource type="PackedScene" uid="uid://d2860gi8hh0of" path="res://receptor.tscn" id="1_7jae4"]
+[ext_resource type="PackedScene" uid="uid://cbgp6tpi38au2" path="res://note.tscn" id="2_22kie"]
+[ext_resource type="PackedScene" uid="uid://dfe2vuuc3cc1l" path="res://cursor.tscn" id="3_r8sj6"]
+
+[node name="Playfield" type="Node2D"]
+script = ExtResource("1_6ycwn")
+
+[node name="Receptor" parent="." instance=ExtResource("1_7jae4")]
+unique_name_in_owner = true
+
+[node name="Notes" type="Node2D" parent="."]
+unique_name_in_owner = true
+
+[node name="Note" parent="Notes" instance=ExtResource("2_22kie")]
+position = Vector2(-256, -256)
+
+[node name="Body" parent="Notes/Note" index="0"]
+position = Vector2(64, 0)
+
+[node name="Note2" parent="Notes" instance=ExtResource("2_22kie")]
+position = Vector2(-128, -384)
+
+[node name="Body" parent="Notes/Note2" index="0"]
+position = Vector2(64, 0)
+
+[node name="Note3" parent="Notes" instance=ExtResource("2_22kie")]
+position = Vector2(0, -512)
+
+[node name="Body" parent="Notes/Note3" index="0"]
+position = Vector2(64, 0)
+
+[node name="Note4" parent="Notes" instance=ExtResource("2_22kie")]
+position = Vector2(128, -640)
+
+[node name="Body" parent="Notes/Note4" index="0"]
+position = Vector2(64, 0)
+
+[node name="Cursor" parent="." instance=ExtResource("3_r8sj6")]
+unique_name_in_owner = true
+
+[editable path="Notes/Note"]
+[editable path="Notes/Note2"]
+[editable path="Notes/Note3"]
+[editable path="Notes/Note4"]
