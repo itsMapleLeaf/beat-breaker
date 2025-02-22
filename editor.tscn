@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://dlfddx4bhbdv4"]
+[gd_scene load_steps=3 format=3 uid="uid://dlfddx4bhbdv4"]
 
 [ext_resource type="PackedScene" uid="uid://ck8ay8mi4qp70" path="res://player.tscn" id="1_oyc0q"]
+[ext_resource type="Script" path="res://editor.gd" id="1_s42uc"]
 
 [node name="Editor" type="Node2D"]
+script = ExtResource("1_s42uc")
 
 [node name="Player" parent="." instance=ExtResource("1_oyc0q")]
 unique_name_in_owner = true
