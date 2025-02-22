@@ -13,8 +13,8 @@ const TIMING_WINDOW: float = (80 / 1000.0) # easier to think in ms but calc in s
 
 @export var time := 0.0:
 	set(new_time):
-		chart.position.y = VERTICAL_SECOND_DISTANCE * time
 		time = new_time
+		chart.position.y = VERTICAL_SECOND_DISTANCE * time
 
 
 func _process(delta: float) -> void:
