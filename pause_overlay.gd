@@ -12,7 +12,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _on_return_to_title_button_down() -> void:
 	get_tree().paused = false
-	get_tree().change_scene_to_file("res://title.tscn")
+	get_tree().change_scene_to_file("res://song_select.tscn")
 
 
 func _resume() -> void:
