@@ -72,7 +72,7 @@ func _build_chart() -> void:
 		{ placement = 2 / 4.0 },
 		{ place = &'tap', advance = 1 },
 		{ place = &'tap', advance = 1 },
-		{ place = &'tap', advance = 2 },
+		{ place = &'tap', hold_points = [[1.5, 0]], advance = 2 },
 	]
 	
 	var current_beat := 0.0
@@ -87,7 +87,11 @@ func _build_chart() -> void:
 		
 		var place = item.get(&'place')
 		if place is StringName:
-			note_field.add_note(song.beats_to_seconds(current_beat), current_placement)
+			var note := note_field.add_note(song.beats_to_seconds(current_beat), current_placement)
+			var hold_points = item.get(&'hold_points')
+			if hold_points != null:
+				for hold_point in hold_points:
+					note.add_hold_point(song.beats_to_seconds(hold_point[0]), hold_point[1], note_field)
 		
 		var advance = item.get(&'advance') 
 		if advance is int or advance is float: current_beat += advance

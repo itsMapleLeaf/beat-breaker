@@ -41,16 +41,18 @@ func get_screen_position(time: float, placement: float) -> Vector2:
 	return Vector2(x, y)
 	
 	
-func add_note(time: float, placement: float) -> void:
+func add_note(time: float, placement: float) -> Note:
 	var note := preload("res://note.tscn").instantiate()
 	note.time = time
 	note.placement = placement
 	note.position = get_screen_position(time, placement)
 	notes.add_child(note)
+	return note
 
 
 func _ready() -> void:
 	receptor.position = get_screen_position(0, receptor_position)
+
 
 func _process(delta: float) -> void:
 	notes.position.x = current_time * scroll_speed * -1
