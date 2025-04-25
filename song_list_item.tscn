@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://js8smcdtjw7x"]
 
 [ext_resource type="Theme" uid="uid://cb3yrdhpxly8j" path="res://song_list_item.tres" id="1_uaqbn"]
-[ext_resource type="Script" path="res://song_list_item.gd" id="1_wlvms"]
+[ext_resource type="Script" uid="uid://dql2jhlpgcnhd" path="res://song_list_item.gd" id="1_wlvms"]
 
 [node name="SongListItem" type="HBoxContainer"]
 anchors_preset = 10

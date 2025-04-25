@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://d2860gi8hh0of"]
 
-[ext_resource type="Script" path="res://receptor.gd" id="1_6fjlt"]
+[ext_resource type="Script" uid="uid://dirgofrnfymcw" path="res://receptor.gd" id="1_6fjlt"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_rim6g"]
 

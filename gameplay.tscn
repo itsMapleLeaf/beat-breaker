@@ -1,16 +1,41 @@
-[gd_scene load_steps=4 format=3 uid="uid://g11mjkibsfki"]
+[gd_scene load_steps=5 format=3 uid="uid://g11mjkibsfki"]
 
-[ext_resource type="Script" path="res://gameplay.gd" id="1_e1yfs"]
-[ext_resource type="PackedScene" uid="uid://ck8ay8mi4qp70" path="res://player.tscn" id="2_d1mv6"]
-[ext_resource type="PackedScene" uid="uid://c07p4bcd812ge" path="res://pause_overlay.tscn" id="3_qdlsw"]
+[ext_resource type="Script" uid="uid://ckfi6yaqjapey" path="res://gameplay.gd" id="1_e1yfs"]
+[ext_resource type="AudioStream" uid="uid://dlghq3tugugjo" path="res://deep sea dive.ogg" id="2_ej4tk"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_n4psk"]
+size = Vector2(50, 50)
+
+[sub_resource type="GDScript" id="GDScript_ej4tk"]
+script/source = "class_name Note
+extends MeshInstance2D
+
+var hold_duration := 0.0
+"
 
 [node name="Gameplay" type="Node2D"]
 script = ExtResource("1_e1yfs")
+scroll_speed = 180.0
 
-[node name="Player" parent="." instance=ExtResource("2_d1mv6")]
-unique_name_in_owner = true
-position = Vector2(320, 1024)
-playing = true
+[node name="Chart" type="Node2D" parent="."]
 
-[node name="PauseOverlay" parent="." instance=ExtResource("3_qdlsw")]
-unique_name_in_owner = true
+[node name="Note" type="MeshInstance2D" parent="."]
+visible = false
+rotation = 0.785397
+mesh = SubResource("QuadMesh_n4psk")
+script = SubResource("GDScript_ej4tk")
+
+[node name="Receptor" type="MeshInstance2D" parent="."]
+position = Vector2(64, 320)
+rotation = 0.785397
+scale = Vector2(1, 1)
+mesh = SubResource("QuadMesh_n4psk")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ej4tk")
+autoplay = true
+
+[node name="DebugLabel" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+metadata/_edit_lock_ = true
