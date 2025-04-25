@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://cct8ykarpw6ps"]
+
+[ext_resource type="Script" uid="uid://ccm8fdp2p2gp5" path="res://note_field.gd" id="1_fe2bs"]
+[ext_resource type="PackedScene" uid="uid://d1kxusbos35ok" path="res://receptor.tscn" id="2_ivnht"]
+
+[node name="NoteField" type="Node2D"]
+script = ExtResource("1_fe2bs")
+
+[node name="Receptor" parent="." instance=ExtResource("2_ivnht")]
+unique_name_in_owner = true
+
+[node name="Notes" type="Node2D" parent="."]
+unique_name_in_owner = true

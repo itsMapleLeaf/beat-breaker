@@ -1,13 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://d2860gi8hh0of"]
+[gd_scene load_steps=3 format=3 uid="uid://d1kxusbos35ok"]
 
-[ext_resource type="Script" uid="uid://dirgofrnfymcw" path="res://receptor.gd" id="1_6fjlt"]
+[ext_resource type="Script" uid="uid://mp1dku60cgfm" path="res://receptor.gd" id="1_6fjlt"]
 
-[sub_resource type="QuadMesh" id="QuadMesh_rim6g"]
+[sub_resource type="QuadMesh" id="QuadMesh_i8n3f"]
+size = Vector2(48, 48)
 
 [node name="Receptor" type="Node2D"]
 script = ExtResource("1_6fjlt")
 
-[node name="Mesh" type="MeshInstance2D" parent="."]
-unique_name_in_owner = true
-scale = Vector2(512, 16)
-mesh = SubResource("QuadMesh_rim6g")
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+rotation = 0.785398
+mesh = SubResource("QuadMesh_i8n3f")

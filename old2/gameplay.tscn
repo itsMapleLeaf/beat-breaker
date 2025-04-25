@@ -1,0 +1,30 @@
+[gd_scene load_steps=5 format=3 uid="uid://g11mjkibsfki"]
+
+[ext_resource type="Script" uid="uid://ckfi6yaqjapey" path="res://old2/gameplay.gd" id="1_e1yfs"]
+[ext_resource type="AudioStream" uid="uid://dlghq3tugugjo" path="res://deep sea dive.ogg" id="2_ej4tk"]
+[ext_resource type="PackedScene" uid="uid://bmy6vjvvrpwb1" path="res://old2/note.tscn" id="2_oe8ih"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_n4psk"]
+size = Vector2(50, 50)
+
+[node name="Gameplay" type="Node2D"]
+script = ExtResource("1_e1yfs")
+scroll_speed = 180.0
+
+[node name="Chart" type="Node2D" parent="."]
+
+[node name="Note" parent="." instance=ExtResource("2_oe8ih")]
+
+[node name="Receptor" type="MeshInstance2D" parent="."]
+position = Vector2(64, 320)
+rotation = 0.785397
+mesh = SubResource("QuadMesh_n4psk")
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("2_ej4tk")
+autoplay = true
+
+[node name="DebugLabel" type="Label" parent="."]
+offset_right = 40.0
+offset_bottom = 23.0
+metadata/_edit_lock_ = true

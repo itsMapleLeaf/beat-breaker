@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="beat breaker"
-run/main_scene="uid://g11mjkibsfki"
+run/main_scene="uid://c2w8v3ly6vrfn"
 config/features=PackedStringArray("4.4", "Mobile")
 config/icon="res://icon.svg"
+
+[debug]
+
+gdscript/warnings/shadowed_variable=0
 
 [display]
 

@@ -1,0 +1,12 @@
+[gd_scene load_steps=3 format=3 uid="uid://r5yflfjqykqm"]
+
+[ext_resource type="Script" uid="uid://ud7rfjpep61r" path="res://old2/hold_point.gd" id="1_dwwxr"]
+
+[sub_resource type="QuadMesh" id="QuadMesh_n4psk"]
+size = Vector2(50, 50)
+
+[node name="HoldPoint" type="MeshInstance2D"]
+rotation = 0.785397
+scale = Vector2(0.15, 0.15)
+mesh = SubResource("QuadMesh_n4psk")
+script = ExtResource("1_dwwxr")
