@@ -2,16 +2,10 @@
 
 [ext_resource type="Script" uid="uid://ckfi6yaqjapey" path="res://gameplay.gd" id="1_e1yfs"]
 [ext_resource type="AudioStream" uid="uid://dlghq3tugugjo" path="res://deep sea dive.ogg" id="2_ej4tk"]
+[ext_resource type="Script" uid="uid://cs3ppoqai2n4d" path="res://node.gd" id="2_oe8ih"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_n4psk"]
 size = Vector2(50, 50)
-
-[sub_resource type="GDScript" id="GDScript_ej4tk"]
-script/source = "class_name Note
-extends MeshInstance2D
-
-var hold_duration := 0.0
-"
 
 [node name="Gameplay" type="Node2D"]
 script = ExtResource("1_e1yfs")
@@ -23,7 +17,7 @@ scroll_speed = 180.0
 visible = false
 rotation = 0.785397
 mesh = SubResource("QuadMesh_n4psk")
-script = SubResource("GDScript_ej4tk")
+script = ExtResource("2_oe8ih")
 
 [node name="Receptor" type="MeshInstance2D" parent="."]
 position = Vector2(64, 320)

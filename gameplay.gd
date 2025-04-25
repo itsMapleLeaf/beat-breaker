@@ -3,6 +3,8 @@ extends Node2D
 const SCREEN_HEIGHT = 648
 const CHART_GUTTER = 100
 const TIMING_WINDOW = 0.15
+const OFFSET = -0.05
+const PLACEMENT_WINDOW = 32
 
 @export var song_bpm := 187.0
 @export_range(100, 500, 10) var scroll_speed := 100.0 # in pixels per beat
@@ -11,52 +13,50 @@ var chart_data: Array[Dictionary] = [
 	{ start = 36, division = 4 },
 	{ placement = 0 },
 	{ type = &'tap', section = 1 },
-	{ type = &'tap', section = 1 },
-	{ type = &'tap', section = 1 },
-	{ type = &'tap', section = 1 },
+	{ type = &'catch', section = 1 },
+	{ type = &'catch', section = 1 },
+	{ type = &'catch', section = 1 },
 	
 	{ placement = 1 },
 	{ type = &'tap', section = 1 },
-	{ type = &'tap', section = 1 },
-	{ type = &'tap', section = 1 },
-	{ type = &'tap', section = 1 },
+	{ type = &'catch', section = 1 },
+	{ type = &'catch', section = 1 },
+	{ type = &'catch', section = 1 },
 	
 	{ placement = 2 },
 	{ type = &'tap', section = 1 },
-	{ type = &'tap', section = 1 },
-	{ type = &'tap', section = 1 },
-	{ type = &'tap', section = 1 },
-	{ type = &'tap', section = 1 },
-	{ type = &'tap', section = 1 },
-	{ type = &'tap', section = 1 },
-	{ type = &'tap', section = 1 },
+	{ type = &'catch', section = 1 },
+	{ type = &'catch', section = 1 },
+	{ type = &'catch', section = 1 },
+	{ type = &'catch', section = 1 },
+	{ type = &'catch', section = 1 },
+	{ type = &'catch', section = 1 },
+	{ type = &'catch', section = 1 },
 	
 	{ placement = 4 },
 	{ type = &'tap', section = 1 },
-	{ type = &'tap', section = 1 },
-	{ type = &'tap', section = 1 },
-	{ type = &'tap', section = 1 },
+	{ type = &'catch', section = 1 },
+	{ type = &'catch', section = 1 },
+	{ type = &'catch', section = 1 },
 	
 	{ placement = 1 },
 	{ type = &'tap', section = 1 },
-	{ type = &'tap', section = 1 },
+	{ type = &'catch', section = 1 },
 	{ placement = 0 },
 	{ type = &'tap', section = 1 },
-	{ type = &'tap', section = 1 },
+	{ type = &'catch', section = 1 },
 	
 	{ placement = 3 },
 	{ type = &'tap', section = 1 },
-	{ type = &'tap', section = 1 },
-	{ type = &'tap', section = 1 },
-	{ type = &'tap', section = 1 },
+	{ type = &'catch', section = 1 },
+	{ type = &'catch', section = 1 },
+	{ type = &'catch', section = 1 },
 	
 	{ placement = 2 },
-	{ type = &'tap', section = 1 },
-	{ type = &'tap', section = 1 },
+	{ type = &'catch', section = 1 },
+	{ type = &'catch', section = 1 },
 	{ type = &'tap', section = 1, duration = 1.5 },
 ]
-
-var notes: Array[Note] = []
 
 @onready var receptor: MeshInstance2D = $Receptor
 @onready var note_template: MeshInstance2D = $Note
@@ -91,19 +91,29 @@ func _ready() -> void:
 		if note_data.get(&'type') == &'tap':
 			var x := current_start * scroll_speed
 			var y := get_vertical_note_field_position(current_placement / float(current_division))
-		
-			var note_instance := note_template.duplicate()
-			note_instance.global_position.x = receptor.global_position.x + x
-			note_instance.global_position.y = y
-			note_instance.visible = true
-			chart.add_child(note_instance)
-			
-			var note := Note.new()
+			var note := note_template.duplicate()
 			note.time = beats_to_seconds(current_start)
 			note.placement_divisor = current_division
 			note.placement = current_placement
-			note.node = note_instance
-			notes.append(note)
+			note.global_position.x = receptor.global_position.x + x
+			note.global_position.y = y
+			note.visible = true
+			note.type = Note.NoteType.TAP
+			chart.add_child(note)
+		
+		if note_data.get(&'type') == &'catch':
+			var x := current_start * scroll_speed
+			var y := get_vertical_note_field_position(current_placement / float(current_division))
+			var note: Note = note_template.duplicate()
+			note.time = beats_to_seconds(current_start)
+			note.placement_divisor = current_division
+			note.placement = current_placement
+			note.global_position.x = receptor.global_position.x + x
+			note.global_position.y = y
+			note.visible = true
+			note.type = Note.NoteType.CATCH
+			note.scale = Vector2(0.5, 0.5)
+			chart.add_child(note)
 			
 		if note_data.get(&'section') != null:
 			current_start += note_data.get(&'section')
@@ -112,43 +122,35 @@ func _ready() -> void:
 	
 
 func _process(delta: float) -> void:
-	var current_time := audio_player.get_playback_position() + AudioServer.get_time_since_last_mix()
+	var current_time := audio_player.get_playback_position() + AudioServer.get_time_since_last_mix() + OFFSET
 	var current_beat := seconds_to_beats(current_time)
 	debug_label.text = "beat %d" % current_beat
 	chart.global_position.x = current_beat * scroll_speed * -1
-
 	
 	if Input.is_action_just_pressed("move_up"):
-		var next_note_above: Note
-		for note in notes:
-			if note.node.visible and note.time > current_time - TIMING_WINDOW and note.node.global_position.y < receptor.global_position.y:
-				next_note_above = note
+		for note: Note in chart.get_children():
+			if note.visible and note.time > current_time - TIMING_WINDOW and note.global_position.y < receptor.global_position.y:
+				receptor.global_position.y = note.global_position.y
 				break
-		
-		if next_note_above:
-			receptor.global_position.y = next_note_above.node.global_position.y
 		
 	if Input.is_action_just_pressed("move_down"):
-		var next_note_below: Note
-		for note in notes:
-			if note.node.visible and note.time > current_time - TIMING_WINDOW and note.node.global_position.y > receptor.global_position.y:
-				next_note_below = note
+		for note: Note in chart.get_children():
+			if note.visible and note.time > current_time - TIMING_WINDOW and note.global_position.y > receptor.global_position.y:
+				receptor.global_position.y = note.global_position.y
 				break
-		
-		if next_note_below:
-			receptor.global_position.y = next_note_below.node.global_position.y
 		
 	if Input.is_action_just_pressed("tap"):
-		for note in notes:
-			if abs(note.time - current_time) <= TIMING_WINDOW and abs(receptor.global_position.y - note.node.global_position.y) < 32:
-				note.node.visible = false
-				note.node.process_mode = PROCESS_MODE_DISABLED
+		for note: Note in chart.get_children():
+			if note.type == Note.NoteType.TAP and abs(note.time - current_time) <= TIMING_WINDOW and abs(receptor.global_position.y - note.global_position.y) < PLACEMENT_WINDOW:
+				note.visible = false
+				note.process_mode = PROCESS_MODE_DISABLED
 				break
-
-
-class Note:
-	var time: float
-	var placement_divisor: int
-	var placement: int
-	var node: Node2D
-	#var satisfied_placement := false
+	
+	for note: Note in chart.get_children():
+		if note.type == Note.NoteType.CATCH \
+		and abs(receptor.global_position.y - note.global_position.y) < PLACEMENT_WINDOW \
+		and note.time <= current_time \
+		and note.time > current_time - TIMING_WINDOW:
+			note.visible = false
+			note.process_mode = PROCESS_MODE_DISABLED
+			break
