@@ -12,5 +12,13 @@ script = ExtResource("1_wn01w")
 rotation = 0.785398
 mesh = SubResource("QuadMesh_i8n3f")
 
+[node name="HoldBody" type="Line2D" parent="."]
+unique_name_in_owner = true
+points = PackedVector2Array(0, 0, 192, 0)
+width = 32.0
+default_color = Color(1, 1, 1, 0.32549)
+begin_cap_mode = 2
+end_cap_mode = 2
+
 [node name="HoldPoints" type="Node2D" parent="."]
 unique_name_in_owner = true

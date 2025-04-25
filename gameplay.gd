@@ -28,7 +28,7 @@ func _build_chart() -> void:
 	var chart_data: Array[Dictionary] = [
 		{ beat = 36 },
 		{ placement = 0 / 4.0 },
-		{ place = &'tap', advance = 1 },
+		{ place = &'tap', hold_points = [[0.5, 0]], advance = 1 },
 		{ place = &'tap', advance = 1 },
 		{ place = &'tap', advance = 1 },
 		{ place = &'tap', advance = 1 },

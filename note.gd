@@ -11,6 +11,10 @@ var is_tap_complete := false
 var is_complete := false
 
 @onready var hold_points: Node2D = %HoldPoints
+@onready var hold_body: Line2D = %HoldBody
+
+func _ready() -> void:
+	hold_body.clear_points()
 
 func add_hold_point(relative_time: float, relative_placement: float, note_field: NoteField) -> void:
 	var hold_point := preload("res://hold_point.tscn").instantiate()
@@ -19,3 +23,8 @@ func add_hold_point(relative_time: float, relative_placement: float, note_field:
 	hold_point.position.x = relative_time * note_field.scroll_speed
 	hold_point.position.y = relative_placement * note_field.field_rect.size.y
 	hold_points.add_child(hold_point)
+	
+	hold_body.clear_points()
+	hold_body.add_point(Vector2(0, 0))
+	for point: Node2D in hold_points.get_children():
+		hold_body.add_point(point.position)
