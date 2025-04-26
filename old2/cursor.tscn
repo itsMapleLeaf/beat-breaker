@@ -1,5 +1,0 @@
-[gd_scene format=3 uid="uid://dfe2vuuc3cc1l"]
-
-[node name="Cursor" type="Polygon2D"]
-position = Vector2(0, 64)
-polygon = PackedVector2Array(-24, 32, 0, -32, 24, 32, 0, 24)
