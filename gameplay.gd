@@ -1,8 +1,5 @@
 extends Node2D
 
-const Song = preload("res://song.gd")
-const NoteField = preload("res://note_field.gd")
-
 @export var offset := 0.08
 
 var song := Song.new(187)
@@ -28,10 +25,7 @@ func _build_chart() -> void:
 	var chart_data: Array[Dictionary] = [
 		{ beat = 36 },
 		{ placement = 0 / 4.0 },
-		{ place = &'tap', hold_points = [[0.5, 0]], advance = 1 },
-		{ place = &'tap', advance = 1 },
-		{ place = &'tap', advance = 1 },
-		{ place = &'tap', advance = 1 },
+		{ place = &'tap', hold_points = [[1, 0], [2, 0], [3, 1 / 4.0]], advance = 4 },
 		
 		{ placement = 1 / 4.0 },
 		{ place = &'tap', advance = 1 },

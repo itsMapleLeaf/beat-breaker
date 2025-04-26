@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://c2w8v3ly6vrfn"]
 
-[ext_resource type="Script" uid="uid://h4d8qqqm4r0e" path="res://gameplay.gd" id="1_e1yfs"]
+[ext_resource type="Script" uid="uid://nfm82oeri84k" path="res://gameplay.gd" id="1_e1yfs"]
 [ext_resource type="PackedScene" uid="uid://cct8ykarpw6ps" path="res://note_field.tscn" id="2_ej4tk"]
 [ext_resource type="AudioStream" uid="uid://dlghq3tugugjo" path="res://deep sea dive.ogg" id="3_oe8ih"]
 
@@ -16,3 +16,4 @@ scroll_speed = 750
 [node name="SongPlayer" type="AudioStreamPlayer" parent="."]
 unique_name_in_owner = true
 stream = ExtResource("3_oe8ih")
+volume_db = -15.941

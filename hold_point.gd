@@ -1,3 +1,4 @@
+class_name HoldPoint
 extends Node2D
 
 var time := 0.0

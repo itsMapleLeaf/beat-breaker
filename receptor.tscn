@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://d1kxusbos35ok"]
 
-[ext_resource type="Script" uid="uid://mp1dku60cgfm" path="res://receptor.gd" id="1_6fjlt"]
+[ext_resource type="Script" uid="uid://b7dpt172s6vyu" path="res://receptor.gd" id="1_6fjlt"]
 
 [sub_resource type="QuadMesh" id="QuadMesh_i8n3f"]
 size = Vector2(48, 48)

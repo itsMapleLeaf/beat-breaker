@@ -1,3 +1,5 @@
+class_name Song
+
 var bpm: float
 
 func _init(bpm: float) -> void:
