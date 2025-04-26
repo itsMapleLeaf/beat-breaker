@@ -23,3 +23,4 @@
 - [ ] judgment animations
 - [ ] "smooth snap" movement (snap to position minus some number then animate the rest of the way)
 - [ ] pause, resume, seek, restart
+- [ ] some visual on the position window
