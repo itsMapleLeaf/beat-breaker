@@ -1,6 +1,6 @@
 # prototype checklist
 
-- [ ] tap notes
+- [x] tap notes
 - [ ] full chart (mapped half of song)
 
 ## fun stuff
